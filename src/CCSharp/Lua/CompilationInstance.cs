@@ -593,6 +593,8 @@ class CompilationInstance
                     state.Write($"for {keyTempIdent},{valueTempIdent} in pairs(");
                     node.Over.AcceptVisitor(this, state);
                     state.Write(") do");
+                    state.NewLine();
+                    state.Indent();
                     state.Write($"local {node.CursorName} = ");
                     state.Write("{");
                     state.Write(keyTempIdent);
