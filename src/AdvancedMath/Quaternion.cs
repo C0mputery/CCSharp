@@ -2,7 +2,7 @@ using CCSharp.Attributes;
 using CCSharp.ComputerCraft;
 using CCSharp.RedIL.Resolving.CommonResolvers;
 
-namespace CCSharp.AdvancedMath;
+namespace AdvancedMath;
 
 /// <summary>
 /// A basic quaternion type and some common quaternion operations. This may be useful when working with rotation in regards to physics (such as those from the Ship API provided by CC: VS).

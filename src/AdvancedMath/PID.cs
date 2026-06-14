@@ -1,7 +1,7 @@
 using CCSharp.Attributes;
 using CCSharp.ComputerCraft;
 
-namespace CCSharp.AdvancedMath;
+namespace AdvancedMath;
 
 /// <summary>
 /// A basic PID type and common PID operations. This may be useful when working with control systems.

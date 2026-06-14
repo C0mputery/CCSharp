@@ -1,8 +1,6 @@
-using System;
 using CCSharp.Attributes;
-using CCSharp.ComputerCraft;
 
-namespace CCSharp.AdvancedMath;
+namespace AdvancedMath;
 
 /// <summary>
 /// A grab bag of linear equation solvers. Useful for finding solution using linear algebra.

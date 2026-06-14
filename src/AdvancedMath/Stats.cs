@@ -1,6 +1,6 @@
 using CCSharp.Attributes;
 
-namespace CCSharp.AdvancedMath;
+namespace AdvancedMath;
 
 /// <summary>
 /// A grab bag of common descriptive and inferential statistical functions. Useful for statistical analysis.

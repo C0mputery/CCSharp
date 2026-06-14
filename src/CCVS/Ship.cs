@@ -1,9 +1,8 @@
+using AdvancedMath;
 using CCSharp.Attributes;
 using CCSharp.ComputerCraft;
-using CCSharp.AdvancedMath;
-using System.Collections.Generic;
 
-namespace CCSharp.CCVS;
+namespace CCVS;
 /// <summary>
 /// This API is added by CC: VS and allows CCSharp to access information from Valkyrien Skies Ships.
 /// </summary>
