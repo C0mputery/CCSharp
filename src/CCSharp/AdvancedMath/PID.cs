@@ -87,6 +87,18 @@ public static class PID
     /// </summary>
     public class Scalar : BasePID<double, double>
     {
+        [LuaConstructor("pid.new")]
+        public Scalar(double target) : base(target, 1, 0, 0, true) { }
+
+        [LuaConstructor("pid.new")]
+        public Scalar(double target, double p) : base(target, p, 0, 0, true) { }
+
+        [LuaConstructor("pid.new")]
+        public Scalar(double target, double p, double i) : base(target, p, i, 0, true) { }
+
+        [LuaConstructor("pid.new")]
+        public Scalar(double target, double p, double i, double d) : base(target, p, i, d, true) { }
+
         /// <summary>
         /// Constructs a new Scalar PID Controller
         /// </summary>
@@ -103,6 +115,18 @@ public static class PID
     /// </summary>
     public class Vector : BasePID<Vector3, Vector3> 
     {
+        [LuaConstructor("pid.new")]
+        public Vector(Vector3 target) : base(target, 1, 0, 0, true) { }
+
+        [LuaConstructor("pid.new")]
+        public Vector(Vector3 target, double p) : base(target, p, 0, 0, true) { }
+
+        [LuaConstructor("pid.new")]
+        public Vector(Vector3 target, double p, double i) : base(target, p, i, 0, true) { }
+
+        [LuaConstructor("pid.new")]
+        public Vector(Vector3 target, double p, double i, double d) : base(target, p, i, d, true) { }
+
         /// <summary>
         /// Constructs a new Vector PID Controller
         /// </summary>
@@ -119,6 +143,18 @@ public static class PID
     /// </summary>
     public class Quat : BasePID<Quaternion, Vector3>
     {
+        [LuaConstructor("pid.new")]
+        public Quat(Quaternion target) : base(target, 1, 0, 0, true) { }
+
+        [LuaConstructor("pid.new")]
+        public Quat(Quaternion target, double p) : base(target, p, 0, 0, true) { }
+
+        [LuaConstructor("pid.new")]
+        public Quat(Quaternion target, double p, double i) : base(target, p, i, 0, true) { }
+
+        [LuaConstructor("pid.new")]
+        public Quat(Quaternion target, double p, double i, double d) : base(target, p, i, d, true) { }
+
         /// <summary>
         /// Constructs a new Quaternion PID Controller
         /// </summary>

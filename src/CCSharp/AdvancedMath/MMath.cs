@@ -50,7 +50,7 @@ public class MMath
     /// </summary>
     /// <param name="t">The array to scramble</param>
     /// <returns>The new scrambled array</returns>
-    [LuaMethod("mmath.scamble")]
+    [LuaMethod("mmath.scramble")]
     public static double[] Scramble(double[] t) => default;
 
     /// <summary>
@@ -110,5 +110,5 @@ public class MMath
     /// <param name="tol">The convergence tolerance for changes in x</param>
     /// <returns>On success returns the root (a number), otherwise returns null to indicate failure.</returns>
     [LuaMethod("mmath.solveRoot")]
-    public static double SolveRoot(Func<double, double> f, double x0, double tol) => default;
+    public static double? SolveRoot(Func<double, double> f, double x0, double tol) => default;
 }

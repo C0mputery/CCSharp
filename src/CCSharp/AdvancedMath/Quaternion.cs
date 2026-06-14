@@ -9,7 +9,7 @@ namespace CCSharp.AdvancedMath;
 /// </summary>
 public class Quaternion
 {
-    [LuaProperty("vec")]
+    [LuaProperty("v")]
     public Vector3 Imaginary { get; set; }
     [LuaProperty("a")]
     public double Real { get; set; }
@@ -23,12 +23,37 @@ public class Quaternion
     public Quaternion(Vector3 vec, double w) { }
 
     /// <summary>
+    /// Constructs a new Quaternion with default imaginary vector and real component 1.
+    /// </summary>
+    [LuaConstructor("quaternion.new")]
+    public Quaternion(Vector3 vec) { }
+
+    /// <summary>
+    /// Constructs a new Quaternion with default imaginary vector and real component 1.
+    /// </summary>
+    [LuaConstructor("quaternion.new")]
+    public Quaternion() { }
+
+    /// <summary>
     /// Constructs a new Quaternion from the provided axis - angle parameters. The resulting Quaternion is already normalized.
     /// </summary>
     /// <param name="axis">The rotation axis that will be used for the Quaternion. The axis does not need to be normalized.</param>
     /// <param name="angle">The angle to rotate by, in radians.</param>
     [LuaMethod("quaternion.fromAxisAngle")]
     public static Quaternion FromAxisAngle(Vector3 axis, double angle) => default;
+
+    /// <summary>
+    /// Constructs a new Quaternion from the provided axis with zero angle.
+    /// </summary>
+    /// <param name="axis">The rotation axis that will be used for the Quaternion.</param>
+    [LuaMethod("quaternion.fromAxisAngle")]
+    public static Quaternion FromAxisAngle(Vector3 axis) => default;
+
+    /// <summary>
+    /// Constructs a new identity Quaternion from default axis and zero angle.
+    /// </summary>
+    [LuaMethod("quaternion.fromAxisAngle")]
+    public static Quaternion FromAxisAngle() => default;
 
     /// <summary>
     /// Constructs a new quaternion using the provided pitch, yaw and roll. Uses the YXZ reference frame
@@ -38,6 +63,24 @@ public class Quaternion
     /// <param name="roll">The roll in radians.</param>
     [LuaConstructor("quaternion.fromEuler")]
     public Quaternion(double pitch, double yaw, double roll) { }
+
+    /// <summary>
+    /// Constructs a new quaternion using pitch and yaw with zero roll. Uses the YXZ reference frame.
+    /// </summary>
+    [LuaMethod("quaternion.fromEuler")]
+    public static Quaternion FromEuler(double pitch, double yaw) => default;
+
+    /// <summary>
+    /// Constructs a new quaternion using pitch with zero yaw and roll. Uses the YXZ reference frame.
+    /// </summary>
+    [LuaMethod("quaternion.fromEuler")]
+    public static Quaternion FromEuler(double pitch) => default;
+
+    /// <summary>
+    /// Constructs a new identity quaternion from zero euler angles. Uses the YXZ reference frame.
+    /// </summary>
+    [LuaMethod("quaternion.fromEuler")]
+    public static Quaternion FromEuler() => default;
 
     /// <summary>
     /// Constructs a new Quaternion from its components. Note that this will not produce a normalized Quaternion.
@@ -50,6 +93,24 @@ public class Quaternion
     public Quaternion(double x, double y, double z, double w) { }
 
     /// <summary>
+    /// Constructs a new Quaternion from x, y, and z components with default real component.
+    /// </summary>
+    [LuaMethod("quaternion.fromComponents")]
+    public static Quaternion FromComponents(double x, double y, double z) => default;
+
+    /// <summary>
+    /// Constructs a new Quaternion from x and y components with default z and real components.
+    /// </summary>
+    [LuaMethod("quaternion.fromComponents")]
+    public static Quaternion FromComponents(double x, double y) => default;
+
+    /// <summary>
+    /// Constructs a new Quaternion from the x component with default y, z, and real components.
+    /// </summary>
+    [LuaMethod("quaternion.fromComponents")]
+    public static Quaternion FromComponents(double x) => default;
+
+    /// <summary>
     /// Constructs a new quaternion from a 3x3 rotation matrix or 4x4 transformation matrix.
     /// </summary>
     /// <param name="matrix">The rotation matrix to convert to a Quaternion.</param>
@@ -59,8 +120,8 @@ public class Quaternion
     /// <summary>
     /// Constructs a new identity Quaternion (0, 0, 0, 1).
     /// </summary>
-    [LuaConstructor("quaternion.identity")]
-    public Quaternion() { }
+    [LuaMethod("quaternion.identity")]
+    public static Quaternion Identity() => default;
 
     /// <summary>
     /// Get the length (also referred to as magnitude) of this Quaternion.
@@ -119,13 +180,6 @@ public class Quaternion
     /// <returns>A tuple containing the pitch, yaw and roll in radians.</returns>
     [LuaMethod("toEuler", CallMethodFlags.WrapAsTable)]
     public (double pitch, double yaw, double roll) ToEuler() => default;
-
-    /// <summary>
-    /// Converts this Quaternion to a 3x3 rotation matrix.
-    /// </summary>
-    /// <returns>The rotation matrix.</returns>
-    [LuaMethod("toMatrix")]
-    public Matrix ToMatrix() => default;
 
     /// <summary>
     /// Checks if any component of this Quaternion is NaN.

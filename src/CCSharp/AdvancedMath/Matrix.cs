@@ -29,6 +29,17 @@ public class Matrix
     [LuaProperty("columns")]
     public int Columns { get; set; }
 
+    [LuaConstructor("matrix.new")]
+    public Matrix() { }
+
+    /// <summary>
+    /// Constructs a new Matrix with the given number of rows and columns, filling all elements with 1.
+    /// </summary>
+    /// <param name="rows">The number of rows in the matrix.</param>
+    /// <param name="columns">The number of columns in the matrix.</param>
+    [LuaMethod("matrix.new")]
+    public static Matrix New(int rows, int columns) => default;
+
     /// <summary>
     /// Constructs a new Matrix with the given number of rows and columns, filling it using the provided function.
     /// </summary>
@@ -61,6 +72,13 @@ public class Matrix
     /// <param name="row">If true, the vector Matrix will be a single row, otherwise it will be a single column.</param>
     [LuaConstructor("matrix.fromVector")]
     public Matrix(Vector3 vector, bool row) { }
+
+    /// <summary>
+    /// Constructs a new column vector Matrix from the given Vector.
+    /// </summary>
+    /// <param name="vector">The Vector to convert to a Matrix.</param>
+    [LuaConstructor("matrix.fromVector")]
+    public Matrix(Vector3 vector) { }
 
     /// <summary>
     /// Constructs a new 3x3 rotation Matrix from the given Quaternion.
@@ -248,7 +266,7 @@ public class Matrix
     /// Reshapes the matrix to the specified number of rows and columns.
     /// </summary>
     /// <param name="rows">The number of rows in the reshaped matrix.</param>
-    /// <param name="columns">The number of columns in the reshaped matrix.</param
+    /// <param name="columns">The number of columns in the reshaped matrix.</param>
     /// <returns>The reshaped matrix.</returns>
     [LuaMethod("reshape")]
     public Matrix Reshape(int rows, int columns) => default;
@@ -307,4 +325,22 @@ public class Matrix
     /// <returns>The condition number value.</returns>
     [LuaMethod("conditionNumber")]
     public double ConditionNumber() => default;
+
+    /// <summary>
+    /// Raises a square matrix to a non-negative integer power.
+    /// </summary>
+    /// <param name="n">The non-negative integer power.</param>
+    /// <returns>The resulting matrix.</returns>
+    [LuaMethod("pow")]
+    public Matrix Pow(int n) => default;
+
+    public static Matrix operator +(Matrix a, Matrix b) => default;
+    public static Matrix operator +(Matrix a, double scalar) => default;
+    public static Matrix operator -(Matrix a, Matrix b) => default;
+    public static Matrix operator -(Matrix a, double scalar) => default;
+    public static Matrix operator *(Matrix a, Matrix b) => default;
+    public static Matrix operator *(Matrix a, double scalar) => default;
+    public static Matrix operator /(Matrix a, Matrix b) => default;
+    public static Matrix operator /(Matrix a, double scalar) => default;
+    public static Matrix operator -(Matrix m) => default;
 }
