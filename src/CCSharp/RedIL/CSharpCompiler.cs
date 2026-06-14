@@ -450,7 +450,7 @@ public class CSharpCompiler
                 {
                     try
                     {
-                        bool isStaticIdentifier = invocationExpression.Annotation<CSharpInvocationResolveResult>().Member.IsStatic;
+                        bool isStaticIdentifier = invocRes.IsStatic;
                         var selfResolver = _resolver.ResolveMethod(isStaticIdentifier, currentType,
                             identifierExpression.Identifier, invocRes.Parameters.ToArray());
                         if (selfResolver is CallCustomMethodResolver customMethodResolver)
@@ -472,7 +472,7 @@ public class CSharpCompiler
                 throw new RedILException($"Invocation is only possible by a member reference");
             }
 
-            var isStatic = memberReference.Target is TypeReferenceExpression;
+            var isStatic = invocRes.IsStatic;
 
             var resolver = _resolver.ResolveMethod(isStatic, invocRes.DeclaringType,
                 memberReference.MemberName, invocRes.Parameters.ToArray());
@@ -510,7 +510,8 @@ public class CSharpCompiler
         public RedILNode VisitMemberReferenceExpression(MemberReferenceExpression memberReferenceExpression)
         {
             var target = memberReferenceExpression.Target;
-            var isStatic = target is TypeReferenceExpression;
+            var memberResolveResult = memberReferenceExpression.Annotations.FirstOrDefault(annot => annot is MemberResolveResult) as MemberResolveResult;
+            var isStatic = memberResolveResult?.Member.IsStatic == true;
             /*
             var resolveResult =
                 memberReferenceExpression.Annotations.FirstOrDefault(annot => annot is MemberResolveResult) as
@@ -529,9 +530,6 @@ public class CSharpCompiler
             var resolveResult = target.Annotations.FirstOrDefault(annot => annot is ResolveResult) as ResolveResult;
             if (resolveResult is null)
             {
-                var memberResolveResult =
-                    memberReferenceExpression.Annotations.FirstOrDefault(annot => annot is MemberResolveResult) as
-                        MemberResolveResult;
                 type = memberResolveResult.Member.DeclaringType;
             }
             else
@@ -985,7 +983,7 @@ public class CSharpCompiler
             foreach (VariableInitializer variableInitializer in fieldDeclaration.Variables)
             {
                 string declarationName = variableInitializer.Name;
-                var memberResolver = _resolver.ResolveMember(fieldDeclaration.HasModifier(Modifiers.Static), currentType, declarationName);
+                var memberResolver = _resolver.ResolveMember(IsStaticField(fieldDeclaration), currentType, declarationName);
                 if (memberResolver is TableAccessMemberResolver tableAccessMemberResolver)
                 {
                     if (tableAccessMemberResolver.Key is string customName)
@@ -1246,7 +1244,7 @@ public class CSharpCompiler
 
                     if (childNode is FieldDeclaration fieldDeclaration)
                     {
-                        if(fieldDeclaration.HasModifier(Modifiers.Static)) 
+                        if (IsStaticField(fieldDeclaration))
                             currentBlock.Children.Add(ConvertToClassTableAssignmentNode(VisitFieldDeclaration(fieldDeclaration)));
                         else
                             AddToClassInitializerTableNode(VisitFieldDeclaration(fieldDeclaration));
@@ -1284,6 +1282,9 @@ public class CSharpCompiler
             return currentBlock;
         }
         
+        private static bool IsStaticField(FieldDeclaration fieldDeclaration) =>
+            fieldDeclaration.HasModifier(Modifiers.Static) || fieldDeclaration.HasModifier(Modifiers.Const);
+
         private RedILNode ConvertToClassTableAssignmentNode(RedILNode baseNode)
         {
             if (baseNode is not VariableDeclareNode variableDeclareNode)
