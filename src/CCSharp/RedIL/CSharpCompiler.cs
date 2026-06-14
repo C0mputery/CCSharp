@@ -1208,7 +1208,16 @@ public class CSharpCompiler
                 }
             }
             bool needsDefaultConstructor = _compiler.LuaClass != null;
-            foreach (var childNode in typeDeclaration.Children)
+            
+            IOrderedEnumerable<AstNode> sortedListOfTypeDeclarations = typeDeclaration.Children.OrderBy(obj => obj switch {
+                MethodDeclaration _ => 1,
+                FieldDeclaration _ => 2,
+                PropertyDeclaration _ => 3,
+                ConstructorDeclaration _ => 4,
+                _ => 5
+            });
+            
+            foreach (var childNode in sortedListOfTypeDeclarations)
             {
                 if (_compiler.LuaClass == null)
                 {
