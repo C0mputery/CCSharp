@@ -9,8 +9,15 @@ namespace CCSharp.AdvancedMath;
 /// </summary>
 public class Quaternion
 {
+    /// <summary>
+    /// The imaginary component of the quaternion, stored in a Vector.
+    /// </summary>
     [LuaProperty("v")]
     public Vector3 Imaginary { get; set; }
+
+    /// <summary>
+    /// The real component of the quaternion.
+    /// </summary>
     [LuaProperty("a")]
     public double Real { get; set; }
 
@@ -23,8 +30,9 @@ public class Quaternion
     public Quaternion(Vector3 vec, double w) { }
 
     /// <summary>
-    /// Constructs a new Quaternion with default imaginary vector and real component 1.
+    /// Constructs a new Quaternion with the given imaginary vector and default real component 1.
     /// </summary>
+    /// <param name="vec">The imaginary component of the Vector, stored in a Vector.</param>
     [LuaConstructor("quaternion.new")]
     public Quaternion(Vector3 vec) { }
 

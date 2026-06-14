@@ -24,11 +24,21 @@ public class Matrix
         }
     }
 
+    /// <summary>
+    /// The number of rows in the matrix.
+    /// </summary>
     [LuaProperty("rows")]
     public int Rows { get; set; }
+
+    /// <summary>
+    /// The number of columns in the matrix.
+    /// </summary>
     [LuaProperty("columns")]
     public int Columns { get; set; }
 
+    /// <summary>
+    /// Constructs a new 1x1 matrix filled with 1.
+    /// </summary>
     [LuaConstructor("matrix.new")]
     public Matrix() { }
 
@@ -74,7 +84,7 @@ public class Matrix
     public Matrix(Vector3 vector, bool row) { }
 
     /// <summary>
-    /// Constructs a new column vector Matrix from the given Vector.
+    /// Constructs a new row vector Matrix from the given Vector.
     /// </summary>
     /// <param name="vector">The Vector to convert to a Matrix.</param>
     [LuaConstructor("matrix.fromVector")]

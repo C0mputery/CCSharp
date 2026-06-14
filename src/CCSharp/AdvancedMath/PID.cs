@@ -87,15 +87,37 @@ public static class PID
     /// </summary>
     public class Scalar : BasePID<double, double>
     {
+        /// <summary>
+        /// Constructs a new Scalar PID controller with default gains (p=1, i=0, d=0, discrete=true).
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
         [LuaConstructor("pid.new")]
         public Scalar(double target) : base(target, 1, 0, 0, true) { }
 
+        /// <summary>
+        /// Constructs a new Scalar PID controller with default integral, derivative, and discrete mode.
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
+        /// <param name="p">The proportional gain.</param>
         [LuaConstructor("pid.new")]
         public Scalar(double target, double p) : base(target, p, 0, 0, true) { }
 
+        /// <summary>
+        /// Constructs a new Scalar PID controller with default derivative gain and discrete mode.
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
+        /// <param name="p">The proportional gain.</param>
+        /// <param name="i">The integral gain.</param>
         [LuaConstructor("pid.new")]
         public Scalar(double target, double p, double i) : base(target, p, i, 0, true) { }
 
+        /// <summary>
+        /// Constructs a new Scalar PID controller with discrete mode enabled by default.
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
+        /// <param name="p">The proportional gain.</param>
+        /// <param name="i">The integral gain.</param>
+        /// <param name="d">The derivative gain.</param>
         [LuaConstructor("pid.new")]
         public Scalar(double target, double p, double i, double d) : base(target, p, i, d, true) { }
 
@@ -115,15 +137,37 @@ public static class PID
     /// </summary>
     public class Vector : BasePID<Vector3, Vector3> 
     {
+        /// <summary>
+        /// Constructs a new Vector PID controller with default gains (p=1, i=0, d=0, discrete=true).
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
         [LuaConstructor("pid.new")]
         public Vector(Vector3 target) : base(target, 1, 0, 0, true) { }
 
+        /// <summary>
+        /// Constructs a new Vector PID controller with default integral, derivative, and discrete mode.
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
+        /// <param name="p">The proportional gain.</param>
         [LuaConstructor("pid.new")]
         public Vector(Vector3 target, double p) : base(target, p, 0, 0, true) { }
 
+        /// <summary>
+        /// Constructs a new Vector PID controller with default derivative gain and discrete mode.
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
+        /// <param name="p">The proportional gain.</param>
+        /// <param name="i">The integral gain.</param>
         [LuaConstructor("pid.new")]
         public Vector(Vector3 target, double p, double i) : base(target, p, i, 0, true) { }
 
+        /// <summary>
+        /// Constructs a new Vector PID controller with discrete mode enabled by default.
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
+        /// <param name="p">The proportional gain.</param>
+        /// <param name="i">The integral gain.</param>
+        /// <param name="d">The derivative gain.</param>
         [LuaConstructor("pid.new")]
         public Vector(Vector3 target, double p, double i, double d) : base(target, p, i, d, true) { }
 
@@ -143,15 +187,37 @@ public static class PID
     /// </summary>
     public class Quat : BasePID<Quaternion, Vector3>
     {
+        /// <summary>
+        /// Constructs a new Quaternion PID controller with default gains (p=1, i=0, d=0, discrete=true).
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
         [LuaConstructor("pid.new")]
         public Quat(Quaternion target) : base(target, 1, 0, 0, true) { }
 
+        /// <summary>
+        /// Constructs a new Quaternion PID controller with default integral, derivative, and discrete mode.
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
+        /// <param name="p">The proportional gain.</param>
         [LuaConstructor("pid.new")]
         public Quat(Quaternion target, double p) : base(target, p, 0, 0, true) { }
 
+        /// <summary>
+        /// Constructs a new Quaternion PID controller with default derivative gain and discrete mode.
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
+        /// <param name="p">The proportional gain.</param>
+        /// <param name="i">The integral gain.</param>
         [LuaConstructor("pid.new")]
         public Quat(Quaternion target, double p, double i) : base(target, p, i, 0, true) { }
 
+        /// <summary>
+        /// Constructs a new Quaternion PID controller with discrete mode enabled by default.
+        /// </summary>
+        /// <param name="target">The setpoint to reach.</param>
+        /// <param name="p">The proportional gain.</param>
+        /// <param name="i">The integral gain.</param>
+        /// <param name="d">The derivative gain.</param>
         [LuaConstructor("pid.new")]
         public Quat(Quaternion target, double p, double i, double d) : base(target, p, i, d, true) { }
 
