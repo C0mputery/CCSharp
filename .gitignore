@@ -357,5 +357,7 @@ MigrationBackup/
 temp
 temp/**
 
+*.lua
+
 .idea/
 .vscode/
