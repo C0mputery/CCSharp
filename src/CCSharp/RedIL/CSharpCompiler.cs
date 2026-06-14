@@ -455,9 +455,9 @@ public class CSharpCompiler
                             identifierExpression.Identifier, invocRes.Parameters.ToArray());
                         if (selfResolver is CallCustomMethodResolver customMethodResolver)
                         {
-                            if (customMethodResolver.SourceLuaClass != null)
+                            if (customMethodResolver.SourceLuaClass != null && !isStaticIdentifier)
                             {
-                                caller = new IdentifierNode(isStaticIdentifier ? customMethodResolver.SourceLuaClass : "self", DataValueType.Class);
+                                caller = new IdentifierNode("self", DataValueType.Class);
                             }
                         }
                             
