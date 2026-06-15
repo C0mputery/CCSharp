@@ -276,6 +276,9 @@ public class MainResolver
                     throw new Exception("Can not reuse the same name for constructor or method overloads");
                 
             }
+            else if (!method.IsStatic && resolver is CallCustomMethodResolver luaModuleMethodResolver && !proxy.IsDefined(typeof(LuaImplicitTypeArgumentAttribute), inherit: true)) {
+                luaModuleMethodResolver.SourceLuaClass = "";
+            }
             (method.IsStatic ? staticMethods : instanceMethods).Add(new Method
             {
                 Name = method.Name,
